@@ -23,5 +23,5 @@ Foi utilizada uma arquitetura de micro-serviços, visando utilizar diferentes pa
 - ### service--produto
 ![db-service-cliente](./assets/db-service--produto.png)
 
-- ### service--predido
+- ### service--pedido
 ![db-service-cliente](./assets/db-service--pedido.png)
