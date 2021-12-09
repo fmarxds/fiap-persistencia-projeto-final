@@ -2,6 +2,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,gradle,maven,java,visualstudio,visualstudiocode,intellij+all,netbeans,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,gradle,maven,java,visualstudio,visualstudiocode,intellij+all,netbeans,eclipse
 
+### Grafana ###
+/grafana/data/grafana_data/
+/grafana/data/grafana_data/alerting/
+/grafana/data/grafana_data/grafana.db
+
 ### Eclipse ###
 .metadata
 bin/
