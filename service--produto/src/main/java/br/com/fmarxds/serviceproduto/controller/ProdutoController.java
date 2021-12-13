@@ -1,15 +1,17 @@
 package br.com.fmarxds.serviceproduto.controller;
 
+import br.com.fmarxds.serviceproduto.dto.BaixaEstoqueDTO;
+import br.com.fmarxds.serviceproduto.exception.EstoqueInsuficienteException;
+import br.com.fmarxds.serviceproduto.exception.ProdutoNaoEncontradoException;
 import br.com.fmarxds.serviceproduto.model.ProdutoModel;
 import br.com.fmarxds.serviceproduto.service.ProdutoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,9 +25,24 @@ public class ProdutoController {
         return ResponseEntity.ok(produtoService.buscarTodos());
     }
 
-    @GetMapping("/codigo/{codigo}")
-    public ResponseEntity<ProdutoModel> buscarPorCodigo(@PathVariable("codigo") String codigo) {
+    @GetMapping("/{codigo}")
+    public ResponseEntity<ProdutoModel> buscarPorCodigo(
+            @PathVariable("codigo") String codigo
+    ) {
         return ResponseEntity.of(produtoService.buscarPorCodigo(codigo));
+    }
+
+    @PutMapping("/{codigo}/baixa")
+    public ResponseEntity<?> darBaixaEmEstoque(
+            @PathVariable("codigo") String codigo,
+            @RequestBody BaixaEstoqueDTO body
+    ) {
+        try {
+            produtoService.removerDoEstoque(codigo, body.getQuantidade());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (ProdutoNaoEncontradoException | EstoqueInsuficienteException e) {
+            return new ResponseEntity<>(Map.of("mensagem", e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

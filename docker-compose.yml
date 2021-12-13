@@ -9,7 +9,7 @@ services:
       - service--cliente
       - service--pedido
       - service--produto
-#      - jaeger
+      - jaeger
       - redis
     build:
       context: ./api--ecommerce/
@@ -25,7 +25,7 @@ services:
     restart: always
     depends_on:
       - mongodb
-#      - jaeger
+      - jaeger
     build:
       context: ./service--cliente/
     ports:
@@ -40,7 +40,7 @@ services:
     restart: always
     depends_on:
       - mongodb
-#      - jaeger
+      - jaeger
     build:
       context: ./service--pedido/
     ports:
@@ -55,7 +55,7 @@ services:
     restart: always
     depends_on:
       - mysql
-#      - jaeger
+      - jaeger
     build:
       context: ./service--produto/
     ports:
@@ -108,43 +108,43 @@ services:
     ports:
       - "6379:6379"
 
-#  jaeger:
-#    image: jaegertracing/all-in-one
-#    container_name: jaeger
-#    restart: always
-#    ports:
-#      - "5775:5775/udp"
-#      - "6831:6831/udp"
-#      - "6832:6832/udp"
-#      - "5778:5778"
-#      - "9090:16686"
-#      - "14268:14268"
-#      - "14250:14250"
-#      - "9411:9411"
-#
-#  prometheus:
-#    image: prom/prometheus
-#    container_name: prometheus
-#    restart: always
-#    volumes:
-#      - ./prometheus/:/etc/prometheus/
-#    command:
-#      - '--config.file=/etc/prometheus/prometheus.yml'
-#    ports:
-#      - "9091:9090"
-#
-#  grafana:
-#    image: grafana/grafana-oss
-#    container_name: grafana
-#    restart: always
-#    depends_on:
-#      - prometheus
-#    ports:
-#      - "9092:3000"
-#    environment:
-#      GF_SECURITY_ADMIN_USER: root
-#      GF_SECURITY_ADMIN_PASSWORD: root
-#      GF_USERS_ALLOW_SIGN_UP: "false"
-#    volumes:
-#      - ./grafana/provisioning/:/etc/grafana/provisioning/
-#      - ./grafana/data/grafana_data:/var/lib/grafana
+  jaeger:
+    image: jaegertracing/all-in-one
+    container_name: jaeger
+    restart: always
+    ports:
+      - "5775:5775/udp"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "5778:5778"
+      - "9090:16686"
+      - "14268:14268"
+      - "14250:14250"
+      - "9411:9411"
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9091:9090"
+
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    restart: always
+    depends_on:
+      - prometheus
+    ports:
+      - "9092:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: root
+      GF_SECURITY_ADMIN_PASSWORD: root
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/data/grafana_data:/var/lib/grafana

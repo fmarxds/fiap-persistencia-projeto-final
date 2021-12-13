@@ -32,4 +32,12 @@ public class ProdutoModel {
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
+    public boolean removerDoEstoque(Integer quantidade) {
+        if (this.quantidade < quantidade) {
+            return false;
+        }
+        this.quantidade -= quantidade;
+        return true;
+    }
+
 }
