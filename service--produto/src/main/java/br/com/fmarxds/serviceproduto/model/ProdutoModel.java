@@ -17,6 +17,7 @@ public class ProdutoModel {
 
     @Id
     @Column(name = "id")
+    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
