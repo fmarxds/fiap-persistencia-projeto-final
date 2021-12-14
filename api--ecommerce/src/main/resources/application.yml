@@ -26,3 +26,19 @@ opentracing.jaeger:
 spring.redis:
   host: ${REDIS_HOST:localhost}
   port: ${REDIS_PORT:6379}
+
+gateway:
+  cliente:
+    host: ${SERVICE_CLIENTE_HOST:http://localhost:5001}
+    urlBuscarTodos: ${gateway.cliente.host}/clientes
+    urlBuscarPorCpf: ${gateway.cliente.host}/clientes/{cpf}
+  pedido:
+    host: ${SERVICE_PEDIDO_HOST:http://localhost:5002}
+    urlBuscarTodos: ${gateway.pedido.host}/pedidos
+    urlBuscarTodosPorCpf: ${gateway.pedido.host}/pedidos/cpf/{cpf}
+    urlCriarPedido: ${gateway.pedido.host}/pedidos
+  produto:
+    host: ${SERVICE_PRODUTO_HOST:http://localhost:5003}
+    urlBuscarTodos: ${gateway.produto.host}/produtos
+    urlBuscarPorCodigo: ${gateway.produto.host}/produtos/{codigo}
+    urlBaixarEstoque: ${gateway.produto.host}/produtos/{codigo}/baixa

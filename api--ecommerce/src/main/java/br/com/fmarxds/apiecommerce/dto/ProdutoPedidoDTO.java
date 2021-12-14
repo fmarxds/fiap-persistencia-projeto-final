@@ -1,6 +1,5 @@
-package br.com.fmarxds.serviceproduto.dto;
+package br.com.fmarxds.apiecommerce.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class BaixaEstoqueDTO {
+public class ProdutoPedidoDTO {
+
+    @JsonProperty("codigo")
+    private String codigo;
+
+    @JsonProperty("nome")
+    private String nome;
 
     @JsonProperty("quantidade")
     private Integer quantidade;
