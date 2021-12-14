@@ -39,3 +39,25 @@ db.cliente.insertOne({
         }
     ]
 });
+
+
+db = db.getSiblingDB('db_pedido');
+
+db.pedido.insertOne({
+    'cpf': '97046458057',
+    'data': ISODate('2021-12-13T03:00:00.000Z'),
+    'endereco_entrega': {
+        'logradouro': 'Rua Pedro Humberto',
+        'numero': '1101',
+        'cep': '04533070',
+        'cidade': 'São Paulo',
+        'estado': 'SP'
+    },
+    'produtos': [
+        {
+            'codigo': 'b01941c8-a465-40b3-95f7-6588ff53b1aa',
+            'nome': 'Macbook Pro M1',
+            'quantidade': 1
+        }
+    ]
+});
