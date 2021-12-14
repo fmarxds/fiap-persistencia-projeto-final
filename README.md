@@ -24,7 +24,7 @@ Abra um terminal na raiz do projeto e digite os comandos:
 
 # Postman
 
-Na pasta "collections" na raiz do projeto, estão as collections e o environment do Postman para importação
+Na pasta "postman_collections" na raiz do projeto, estão as collections e o environment do Postman para importação
 
 # URL dos Serviços
 
